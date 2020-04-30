@@ -50,3 +50,29 @@ function drawChart(datasets) {
   window.myLine = new Chart(ctx, config);
   window.myLine.update();
 }
+
+function generateLabels(labels) {
+  labels.sort();
+  var ul = document.getElementById('slide-out');
+  labels.forEach((item, i) => {
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    //var i = document.createElement('i');
+    //i.innerHTML = "cloud";
+    //i.classList.add("material-icons");
+    //i.classList.add("left");
+    a.classList.add("waves-effect");
+    a.classList.add("waves-light");
+    a.classList.add("btn-small");
+    //a.appendChild(i);
+    a.innerHTML = item;
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  var elems = document.querySelectorAll('.sidenav');
+  var options = {
+    edge: 'left',
+  }
+  var instances = M.Sidenav.init(elems, options);
+}

@@ -14,6 +14,7 @@ function parseResponse(responseText, dataType) {
   var datasets = [];
   var allJSON = JSON.parse(responseText);
   var color = Chart.helpers.color;
+  var cities = [];
 
   for (var key in allJSON){
     var datasetElem = {};
@@ -21,6 +22,9 @@ function parseResponse(responseText, dataType) {
     var label = key.replace('DEPARTAMENT DE SALUT DE', '')
       .replace('DEPARTAMENT DE SALUT D\'', '')
       .replace('DEPARTAMENT DE SALUT ', '');
+    if (!cities.includes(label)) {
+      cities.push(label.trim());
+    }
     datasetElem['label'] = label;
     datasetElem['fill'] = false;
 
@@ -52,6 +56,9 @@ function parseResponse(responseText, dataType) {
 
   // Draw chart
   drawChart(datasets);
+
+  // Generate labels
+  generateLabels(cities);
 }
 
 function getRandomColor() {

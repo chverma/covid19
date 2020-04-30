@@ -9,14 +9,22 @@
     <script src="js/data.js"></script>
     <script src="js/init.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/style.css"></link>
+    <!--link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"-->
+    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
   <body>
-	   <div id="chart-continer">
+    <ul id="slide-out" class="sidenav">
+    </ul>
+    <a id="filtres" href="#" data-target="slide-out" class="sidenav-trigger btn-floating">Filtres</a>
+
+    <div id="chart-continer">
 		     <canvas id="canvas"></canvas>
-	   </div>
-     <script>
+	  </div>
+    <script>
       window.onload = init();
     </script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
   </body>
 </html>
