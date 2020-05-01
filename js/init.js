@@ -1,8 +1,8 @@
-function init() {
+function init () {
   readFiles(getUrlVars('dataType'));
 }
 
-function drawChart(datasets) {
+function drawChart (datasets) {
   var config = {
     type: 'line',
     data: {
@@ -18,10 +18,10 @@ function drawChart(datasets) {
         xAxes: [{
           type: 'time',
           time: {
-                  displayFormats: {
-                      quarter: 'DD MM'
-                  }
-                },
+            displayFormats: {
+              quarter: 'DD MM'
+            }
+          },
           distribution: 'series',
           display: true,
           scaleLabel: {
@@ -51,20 +51,15 @@ function drawChart(datasets) {
   window.myLine.update();
 }
 
-function generateLabels(labels) {
+function generateLabels (labels) {
   labels.sort();
   var ul = document.getElementById('slide-out');
   labels.forEach((item, i) => {
     var li = document.createElement('li');
     var a = document.createElement('a');
-    //var i = document.createElement('i');
-    //i.innerHTML = "cloud";
-    //i.classList.add("material-icons");
-    //i.classList.add("left");
-    a.classList.add("waves-effect");
-    a.classList.add("waves-light");
-    a.classList.add("btn-small");
-    //a.appendChild(i);
+    a.classList.add('waves-effect');
+    a.classList.add('waves-light');
+    a.classList.add('btn-small');
     a.innerHTML = item;
     li.appendChild(a);
     ul.appendChild(li);
@@ -72,7 +67,7 @@ function generateLabels(labels) {
 
   var elems = document.querySelectorAll('.sidenav');
   var options = {
-    edge: 'left',
-  }
-  var instances = M.Sidenav.init(elems, options);
+    edge: 'left'
+  };
+  M.Sidenav.init(elems, options);
 }
