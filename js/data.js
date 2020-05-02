@@ -1,3 +1,5 @@
+var datasets = [];
+var checkedDepts = [];
 function readFiles(dataType) {
   var apiAddress = 'data/all.json';
   var xhttp = new XMLHttpRequest();
@@ -11,7 +13,6 @@ function readFiles(dataType) {
 }
 
 function parseResponse (responseText, dataType) {
-  var datasets = [];
   var allJSON = JSON.parse(responseText);
   var color = Chart.helpers.color;
   var cities = [];
@@ -21,9 +22,9 @@ function parseResponse (responseText, dataType) {
     // Remove depts.
     var label = key.replace('DEPARTAMENT DE SALUT DE', '')
       .replace('DEPARTAMENT DE SALUT D\'', '')
-      .replace('DEPARTAMENT DE SALUT ', '');
+      .replace('DEPARTAMENT DE SALUT ', '').trim();
     if (!cities.includes(label)) {
-      cities.push(label.trim());
+      cities.push(label);
     }
     datasetElem.label = label;
     datasetElem.fill = false;
@@ -59,6 +60,7 @@ function parseResponse (responseText, dataType) {
 
   // Generate labels
   generateLabels(cities);
+  checkedDepts = cities;
 }
 
 function getRandomColor () {
@@ -76,4 +78,24 @@ function getUrlVars (whichVar) {
     vars[key] = value;
   });
   return vars[whichVar] ? vars[whichVar] : 'accum';
+}
+
+function getCheckedDepartments () {
+  var elems = document.getElementsByClassName('chk_department');
+  var depts = [];
+  for (var i = 0; i < elems.length; i++) {
+    if (elems[i].childNodes[0].checked) {
+      depts.push(elems[i].childNodes[0].value);
+    }
+  }
+  return depts;
+}
+
+function checkDept (dept) {
+  return checkedDepts.includes(dept.label);
+}
+
+function toggleDepartment () {
+  checkedDepts = getCheckedDepartments();
+  drawChart(datasets.filter(checkDept));
 }

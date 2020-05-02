@@ -56,12 +56,18 @@ function generateLabels (labels) {
   var ul = document.getElementById('slide-out');
   labels.forEach((item, i) => {
     var li = document.createElement('li');
-    var a = document.createElement('a');
-    a.classList.add('waves-effect');
-    a.classList.add('waves-light');
-    a.classList.add('btn-small');
-    a.innerHTML = item;
-    li.appendChild(a);
+    var label = document.createElement('label');
+    label.classList.add('chk_department');
+    var input = document.createElement('input');
+    var span = document.createElement('span');
+    span.innerHTML = item;
+    input.setAttribute('type', 'checkbox');
+    input.setAttribute('checked', 'checked');
+    input.setAttribute('value', item);
+    input.addEventListener('click', toggleDepartment);
+    label.appendChild(input);
+    label.appendChild(span);
+    li.appendChild(label);
     ul.appendChild(li);
   });
 
