@@ -3,6 +3,9 @@ function init () {
 }
 
 function drawChart (datasets) {
+  if (window.myLine) {
+    window.myLine.destroy();
+  }
   var config = {
     type: 'line',
     data: {
