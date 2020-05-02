@@ -15,6 +15,18 @@
   left: 0;
 }
 
+#dataType {
+  position: fixed;
+  top: 0;
+  left: 5%;
+}
+
+#dataType1 {
+  position: fixed;
+  top: 0;
+  left: 10%;
+}
+
 .chk_department {
   margin-left: 5%;
 }
